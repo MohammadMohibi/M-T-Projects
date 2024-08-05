@@ -81,11 +81,15 @@ def main():
         # Save the workbook to ensure changes
         currentWB.save(f"{xlLoc}\\{fileName}")
 
+        # check for site folders
+        sitePath = checkPathCreate(xlLoc, pdfName.split(" ")[0])
+        
         # Split the PDF into multiple files
         pdfWrite = pypdf.PdfWriter()
         pdfWrite.add_page(page)
 
-        with open(f"{xlLoc}\\{pdfPageName}.pdf", 'wb') as out:
+        # Create the new pdf files in the same location as the original - can add if else chain to see which site to add it in
+        with open(f"{sitePath}\\{pdfPageName}.pdf", 'wb') as out:
             pdfWrite.write(out)
         print(f'Split {pdfPageName} successfully')
     
