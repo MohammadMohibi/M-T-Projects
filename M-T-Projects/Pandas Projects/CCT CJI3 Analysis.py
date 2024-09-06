@@ -17,10 +17,13 @@ cols = list(cctPrime.columns)
 cctPrime = cctPrime[[cols[-1]]+ cols[1:-1]]
 
 # Begin grouping by the necessary variables WBS -> Vendor -> aggregate sum based on month
-wbsGroup = pd.DataFrame(cctPrime.groupby(['WBS Name', 'Vendor Name']))
-
+#wbsGroup = cctPrime.groupby(['WBS Name', 'Vendor Name', 'Period']).agg('Value TranCurr', sum).unstack('Period', fill_value=0)
+wbsGroup = cctPrime.groupby(['WBS Name', 'Vendor Name', 'Period'])['Value TranCurr'].sum().unstack('Period', fill_value=0)
+#wbsGroup = pd.DataFrame(wbsGroup).pivot(columns='Period', values='Value TranCurr')
+wbsGroup = wbsGroup.rename_axis(columns=None).reset_index()
+print(wbsGroup)
 wbsGroup.to_excel(r'C:\Users\MOHIBIM\OneDrive - Ventia\Documents\M&T Finance\output.xlsx', index = False)
-print(wbsGroup.first())
+
 
 
 '''for index, row in cctPrime.iterrows():
