@@ -8,14 +8,22 @@ def findIteration(pdf, searchTerm):
     return sum([float(pdf[x.end():x.end()+4]) for x in re.finditer(searchTerm, pdf)])
 
 def main():
+    # file to produce the invoice results 
+    writePath = r'C:\Users\MOHIBIM\OneDrive - Ventia\Documents\M&T Finance\TL Invoice output.xlsx'
+    workbook = openpyxl.Workbook()
+    sheet = workbook.active
+
     # User provides the location of the folders where invoices are
     folLoc = input("Provide location of Folders: ")
     folLoc = str(checkIfBlank(folLoc,"location"))
     
+    # Since invoices require two columns; 1 for volume and 2 for value we need to index +2 to match with volume only
+    fileNum = 1
     # Continue through all pdf files in folder to output the sum of each type of fee
     for file in os.listdir(folLoc):
         filename = os.fsdecode(file)
         
+
         # Check for pdf
         if filename.endswith(".pdf"):
             print(file)
@@ -49,6 +57,13 @@ def main():
 
         else:
             print(f'{filename} is not a pdf')
+        
+        for line in invoiceList[1]:
+            sheet.cell(row=line[0],column=fileNum).value = line[1]
+
+        fileNum += 2
+
+    workbook.save(filename=writePath)
 
 
 main()
