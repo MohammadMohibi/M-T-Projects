@@ -40,8 +40,10 @@ def main():
                 tmanightFee = (15, findIteration(pdfText,r"TMA with Operator Night Rate 0-8 hrs"))
                 tmanightplusFee = (27, findIteration(pdfText,r"TMA with Operator Night Rate 8\+ hrs"))
                 podFee = (52, findIteration(pdfText,r"Drop Deck / Pod Truck"))
-                onexnightFee = (11, findIteration(pdfText,r"1 x Traffic Controller Night Rate 0-8 hrs"))
-                onexnightplusFee = (23, findIteration(pdfText,r"1 x Traffic Controller Night Rate 8\+ hrs"))
+                onexnightFee = (10, findIteration(pdfText,r"1 x Traffic Controller Night Rate 0-8 hrs"))
+                onexdayFee = (4, findIteration(pdfText,r"1 x Traffic Controller Day Rate 0-8 hrs"))
+                onexnightplusFee = (22, findIteration(pdfText,r"1 x Traffic Controller Night Rate 8\+ hrs"))
+                onexdayplusFee = (16, findIteration(pdfText,r"1 x Traffic Controller Day Rate 8+ hrs"))
                 portFee = (55, findIteration(pdfText,r"Portaboom"))
                 vmsFee = (48, findIteration(pdfText,r"VMS Ute with Operator Night Rate 0-8 hrs"))
                 vmsplusFee = (49, findIteration(pdfText,r"VMS Ute with Operator Night Rate 8\+ hrs"))
@@ -53,7 +55,8 @@ def main():
                 fournightFee = (14,findIteration(pdfText, r"1 x Traffic Controller Day Rate 8+ hrs"))
 
                 # Sort them into order of the line number so it is easier to copy
-                invoiceList = (filename, sorted([fournightFee, threenightFee, tmadayFee, tmawkendFee, twowkendFee, mealFee,esFee,twoxnightFee, twoxnightplusFee,tmanightFee, tmanightplusFee, podFee,onexnightFee,onexnightplusFee,portFee,vmsFee,vmsplusFee]))
+                invoiceList = (filename, sorted([onexdayplusFee, onexdayFee, fournightFee, threenightFee, tmadayFee, tmawkendFee, twowkendFee, mealFee,esFee,twoxnightFee, 
+                twoxnightplusFee,tmanightFee, tmanightplusFee, podFee,onexnightFee,onexnightplusFee,portFee,vmsFee,vmsplusFee]))
                 print(invoiceList)
 
             else:
