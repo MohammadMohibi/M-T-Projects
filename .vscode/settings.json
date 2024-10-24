@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./M-T-Projects/Invoice Reconciliation"
+    ]
+}
