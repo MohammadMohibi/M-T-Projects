@@ -1,4 +1,4 @@
-import pypdf, openpyxl, os, re, sys
+import  openpyxl, os, re, sys
 from pdfminer.high_level import extract_pages, extract_text
 sys.path.append(r'C:\Users\MOHIBIM\Documents\Coding projects\M-T-Projects\Invoice Reconciliation\helpers.py')
 from helpers import *
